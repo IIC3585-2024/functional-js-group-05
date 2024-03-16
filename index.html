@@ -1,13 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/uc.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Markdown to Html parser</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div>
+        <div class="colContainer">
+          <div>
+            <h1>Convert Markdown to HTML</h1>
+            <p>Paste or type your markdown and see it rendered as HTML.</p>
+            <button id="convertButton" type="button">Convert</button>
+          </div>
+          <div class="rowContainer">
+            <div class="columnContainer">
+              <p>Enter Markdown</p>
+              <textarea class="textContainer" id="textInput"></textarea>
+            </div>
+            <div class="columnContainer">
+              <div id="previewButtonContainer" class="rowContainer">
+                <p>HTML Output</p>
+                <button id="previewHtmlButton" type="button">
+                  Preview HTML
+                </button>
+                <button id="rawHtmlButton" type="button">Raw HTML</button>
+              </div>
+              <textarea
+                class="textContainer"
+                id="displayRawHtml"
+                disabled
+              ></textarea>
+              <div class="textContainer" id="displayPreviewHtml"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        Made with ❤ by
+        <a href="https://github.com/BMarink512" target="_blank">BMarink512</a>,
+        <a href="https://github.com/Maxi1805" target="_blank">Maxi1805</a> and
+        <a href="https://github.com/IgnacioPorte" target="_blank"
+          >IgnacioPorte</a
+        >
+      </footer>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
