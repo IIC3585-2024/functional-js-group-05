@@ -1,23 +1,43 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import "./style.css";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <div style="display: flex;">
-      <div style="flex: 1;">
-        <input id="textInput" type="text" />
-        <button id="copyButton" type="button">Copy Text</button>
-      </div>
-      <div id="displayText" style="flex: 1;"></div>
-    </div>
-    <!-- Rest of your code... -->
-  </div>
-`
+const getElement = selector => document.querySelector(selector);
 
-document.querySelector('#copyButton').addEventListener('click', () => {
-  const textInput = document.querySelector('#textInput');
-  const displayText = document.querySelector('#displayText');
-  displayText.textContent = textInput.value;
+const setTextContent = (selector, text) => {
+  const element = getElement(selector);
+  if (element) element.textContent = text;
+};
+
+const setInnerHTML = (selector, html) => {
+  const element = getElement(selector);
+  if (element) element.innerHTML = html;
+};
+
+const toggleDisplay = (selector, display) => {
+  const element = getElement(selector);
+  if (element) element.style.display = display;
+};
+
+const parseHTML = textInput => {
+  const parsedDocument = new DOMParser().parseFromString(textInput, "text/html");
+  return parsedDocument.body.innerHTML;
+};
+
+const copyTextToDisplay = () => {
+  const textInput = getElement("#textInput").value;
+  setTextContent("#displayRawHtml", textInput);
+  const previewHtml = parseHTML(textInput);
+  setInnerHTML("#displayPreviewHtml", previewHtml);
+  toggleDisplay("#displayRawHtml", "none");
+  toggleDisplay("#displayPreviewHtml", "block");
+};
+
+getElement("#convertButton").addEventListener("click", copyTextToDisplay);
+getElement("#rawHtmlButton").addEventListener("click", () => {
+  toggleDisplay("#displayRawHtml", "block");
+  toggleDisplay("#displayPreviewHtml", "none");
+});
+
+getElement("#previewHtmlButton").addEventListener("click", () => {
+  toggleDisplay("#displayRawHtml", "none");
+  toggleDisplay("#displayPreviewHtml", "block");
 });
