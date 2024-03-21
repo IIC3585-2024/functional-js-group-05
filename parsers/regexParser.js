@@ -39,7 +39,8 @@ const mergeSameOrderedListItems = (text) =>
 const fixNestingForOrderedListInUnorderedList = (text) =>
   text.replace(/<\/li><\/ul>\n<ol>/g, '<ol>').replace(/<\/ol>\n<ul><li>/g, '</ol></li><li>');
 
-const compose = (f,g) => (text) => f(g(text));
+const compose = (...funcs) => (text) =>  funcs.reduceRight((acc, func) => func(acc), text);
+
 const italicBoldTransform = compose(italicRegexTransform, boldRegexTransform);
 const strikeItalicBoldTransform = compose(italicBoldTransform, strikethroughRegexTransform);
 export const formatTransform = compose(linkRegexTransform, strikeItalicBoldTransform);
