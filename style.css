@@ -58,6 +58,7 @@ h1 {
 }
 
 .textContainer {
+  text-align: justify;
   max-width: 40em;
   overflow-y: auto;
   margin: 0 auto;
