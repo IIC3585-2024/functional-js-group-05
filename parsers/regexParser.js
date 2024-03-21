@@ -41,9 +41,12 @@ const fixNestingForOrderedListInUnorderedList = (text) =>
 
 const compose = (...funcs) => (text) =>  funcs.reduceRight((acc, func) => func(acc), text);
 
-const italicBoldTransform = compose(italicRegexTransform, boldRegexTransform);
-const strikeItalicBoldTransform = compose(italicBoldTransform, strikethroughRegexTransform);
-export const formatTransform = compose(linkRegexTransform, strikeItalicBoldTransform);
+export const formatTransform = compose(
+  linkRegexTransform,
+  italicRegexTransform,
+  boldRegexTransform,
+  strikethroughRegexTransform,
+);
 
 const replaceListCompose = compose(replaceOrderedListItems, replaceUnorderedListItems);
 const mergeListCompose = compose(mergeSameOrderedListItems, mergeSameUnorderedListItems);
