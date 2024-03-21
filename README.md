@@ -37,8 +37,8 @@ In the case of wanting to run the program locally, the following steps must be f
 
 1. Clone the repository
 2. Open the terminal and navigate to the project folder
-3. Install the dependencies with `pnpm install`
-4. Run the program with `pnpm run dev`
+3. Install the dependencies with `bun install`
+4. Run the program with `bun run dev`
 
 ## How to use
 
