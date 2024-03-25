@@ -7,6 +7,8 @@
 
 // based on https://davidwells.io/snippets/regex-match-markdown-links
 //  - link   using brackets:         tag = "a"       regex = '/\[([\w\s\d]+)\]\((https?:\/\/[\w\d./?=#]+)\)/;'
+// based on https://stackoverflow.com/questions/20128238/regex-to-match-markdown-image-pattern-with-the-given-filename
+// - image  using brackets:         tag = "img"     regex = '/!\[(.*?)\]\((.*?)\)/g'
 
 const regexTransform = (regex, tag, text) =>
   text.replace(regex, `<${tag}>$1</${tag}>`);
@@ -21,9 +23,12 @@ const strikethroughRegexTransform = (text) =>
 
 const linkRegexTransform = (text) =>
   text.replace(
-    /\[([\w\s\d]+)\]\((https?:\/\/[\w\d./?=#]+)\)/,
+    /\[([\w\s\d]+)\]\((https?:\/\/[\w\d./?=#]+)\)/g,
     `<a href="$2">$1</a>`
   );
+
+const imageRegexTransform = (text) =>
+  text.replace(/!\[(.*?)\]\((.*?)\)/g, `<img src="$2" alt="$1" />`);
 
 const codeTransform = (text) => {
   return text
@@ -88,6 +93,7 @@ export const blockquoteTransform = compose(joinBlocks, cleanBlockQuotes, addBloc
 export const formatTransform = compose(
   codeTransform,
   linkRegexTransform,
+  imageRegexTransform,
   italicRegexTransform,
   boldRegexTransform,
   strikethroughRegexTransform,

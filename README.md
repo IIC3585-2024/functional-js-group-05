@@ -52,7 +52,7 @@ To use the parser, you must write markdown text in the input field that says "En
 - [x] bold `**text**` -> `<strong>text</strong>`
 - [x] striketrough `~~text~~` -> `<del>text</del>`
 - [x] code ``` ``text`` ``` -> `<code>text</code>`
-- [ ] blockquote `>text` -> `<blockquote>text</blockquote>`
+- [x] blockquote `>text` -> `<blockquote>text</blockquote>`
 - [x] ordered list `1. text` -> `<ol><li>text</li></ol>`
 - [x] unordered list `* text` -> `<ul><li>text</li></ul>`
 - [x] image `![alt](url)` -> `<img src="url" alt="alt">`
