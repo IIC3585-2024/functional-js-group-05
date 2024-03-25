@@ -1,4 +1,4 @@
-import { formatTransform, listRegexTransform } from "./regexParser.js";
+import { formatTransform, listRegexTransform, blockquoteTransform } from "./regexParser.js";
 import { headingsTransform } from "./headerParser.js";
 
 const listHeadersTransform = (text) => {
@@ -9,5 +9,5 @@ const listHeadersTransform = (text) => {
 };
 
 export const convertMarkdonwToHtml = (text) => {
-  return formatTransform(listHeadersTransform(text));
+  return formatTransform(listHeadersTransform(blockquoteTransform(text)));
 };
